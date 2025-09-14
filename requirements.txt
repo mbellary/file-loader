@@ -1,0 +1,6 @@
+aioboto3
+boto3
+botocore
+python-dotenv
+watchtower
+aiofiles
