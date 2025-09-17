@@ -17,9 +17,9 @@ import botocore
 import boto3
 
 from file_loader.config import SQS_MAX_MSG_SIZE, SQS_SAFE_BODY_BYTES, SQS_BATCH_MAX, INPUT_S3_BUCKET,AWS_REGION, \
-AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY_ID, MAX_FLUSH_SIZE, MAX_KEYS_PER_MESSAGE, PDF_SQS_QUEUE_NAME, S3_ENDPOINT_URL, SQS_ENDPOINT_URL
+ MAX_FLUSH_SIZE, MAX_KEYS_PER_MESSAGE, PDF_SQS_QUEUE_NAME
 from file_loader.logger import get_logger
-from file_loader import aws_clients as clients
+from file_loader.aws_clients import get_aboto3_client, get_boto3_client
 
 logger = get_logger("enqueue_worker")
 
@@ -47,7 +47,7 @@ async def list_inventory_objects(inventory_bucket: str, inventory_prefix: str) -
     #                                                 aws_secret_access_key=AWS_SECRET_ACCESS_KEY_ID,
     #                                                 endpoint_url=S3_ENDPOINT_URL)
 
-    s3 = clients.s3_boto_client()
+    s3 = get_boto3_client('s3')
     paginator = s3.get_paginator("list_objects_v2")
     keys = []
     for page in paginator.paginate(Bucket=inventory_bucket, Prefix=inventory_prefix):
@@ -98,7 +98,7 @@ def _open_s3_object_stream(bucket: str, key: str):
     #                                                 aws_secret_access_key=AWS_SECRET_ACCESS_KEY_ID,
     #                                                 endpoint_url=S3_ENDPOINT_URL)
 
-    s3 = clients.s3_boto_client()
+    s3 = get_boto3_client('s3')
     obj = s3.get_object(Bucket=bucket, Key=key)
     body = obj["Body"]
     raw = body.read()
@@ -266,9 +266,9 @@ async def consumer(
     """
     Pulls message bodies from queue, sends to SQS in batches of 10.
     """
-    session = aioboto3.Session()
+    #session = aioboto3.Session()
     #async with session.client("sqs", region_name=AWS_REGION, endpoint_url=SQS_ENDPOINT_URL, aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY_ID) as sqs_client:
-    async with await clients.sqs_client() as sqs_client:
+    async with await get_aboto3_client('sqs') as sqs_client:
         response = await sqs_client.get_queue_url(QueueName=PDF_SQS_QUEUE_NAME)
         queue_url = response['QueueUrl']
         pending: List[str] = []

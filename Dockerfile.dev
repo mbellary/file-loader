@@ -1,6 +1,6 @@
-FROM python:3.13-slim
+FROM python:3.13-slim AS dev
 
-WORKDIR /app
+WORKDIR /file-loader
 
 # Install system deps for PDF + parquet processing
 RUN apt-get update && apt-get install -y \
@@ -14,23 +14,21 @@ RUN apt-get update && apt-get install -y \
 RUN pip install --no-cache-dir uv
 
 # Copy pyproject.toml (and optional lock file)
-COPY pyproject.toml uv.lock* ./
+COPY pyproject.toml uv.lock* README.md ./
 
 # Install dependencies (uv automatically respects pyproject + lockfile if present)
 RUN if [ -f uv.lock ]; then \
       uv sync --frozen --no-install-project; \
     else \
-      uv pip install --system .; \
+      uv pip install --system . --no-deps; \
     fi
 
-# Copy ReadeME
-COPY README.md ./
 
 # Copy project source
 COPY src ./src
 
 # Install the package itself (creates "worker" CLI script)
-RUN uv pip install --system .
+RUN uv pip install --system --editable .
 
 # Default entrypoint defined in pyproject.toml: [project.scripts]
 ENTRYPOINT ["worker"]

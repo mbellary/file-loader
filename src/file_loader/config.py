@@ -11,12 +11,12 @@ def _env(name, default=None):
 use_localstack = os.getenv("USE_LOCALSTACK", "false").lower() == "true"
 
 #aws region
-AWS_REGION = _env("AWS_REGION", "us-east-1")
+AWS_REGION = _env("AWS_REGION", "ap-south-1")
 
 # AWS CREDENTIALS
-AWS_ACCESS_KEY_ID=_env("AWS_ACCESS_KEY_ID", 'test') if use_localstack else None
-AWS_SECRET_ACCESS_KEY_ID=_env("AWS_SECRET_ACCESS_KEY_ID", 'test') if use_localstack else None
-LOCALSTACK_URL=_env("LOCALSTACK_URL", 'http://localhost:4566') if use_localstack else None
+AWS_ACCESS_KEY_ID=_env("AWS_ACCESS_KEY_ID", 'test') #if use_localstack else None
+AWS_SECRET_ACCESS_KEY=_env("AWS_SECRET_ACCESS_KEY", 'test') #if use_localstack else None
+LOCALSTACK_URL=_env("LOCALSTACK_URL", 'http://localhost:4566') #if use_localstack else None
 
 # S3
 INPUT_S3_BUCKET = _env("INPUT_S3_BUCKET")
@@ -27,9 +27,9 @@ MANIFEST_S3_BUCKET = _env("MANIFEST_S3_BUCKET")
 MANIFEST_S3_KEY = _env("MANIFEST_S3_KEY", "manifest")
 
 # #endpoints
-SQS_ENDPOINT_URL = _env("SQS_ENDPOINT_URL") if use_localstack else None
-DYNAMODB_ENDPOINT_URL = _env("DYNAMODB_ENDPOINT_URL") if use_localstack else None
-S3_ENDPOINT_URL = _env("S3_ENDPOINT_URL") if use_localstack else None
+#SQS_ENDPOINT_URL = _env("SQS_ENDPOINT_URL") #if use_localstack else None
+#DYNAMODB_ENDPOINT_URL = _env("DYNAMODB_ENDPOINT_URL") #if use_localstack else None
+#S3_ENDPOINT_URL = _env("S3_ENDPOINT_URL") #if use_localstack else None
 
 # Queue names - SQS/DLQ
 PDF_SQS_QUEUE_NAME = _env("PDF_SQS_QUEUE_NAME", "pdf-queue")
