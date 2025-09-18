@@ -1,35 +1,44 @@
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv, dotenv_values
+from file_loader.logger import get_logger
+from pathlib import Path
 
-load_dotenv()
+logger = get_logger("enqueue_worker.config")
+
+PACKAGE_DIR = Path(__file__).resolve().parent
+
+
+APP_ENV = os.getenv("APP_ENV", "production").lower()
+
+
+if APP_ENV == "localstack":
+    load_dotenv(PACKAGE_DIR / ".env.localstack")
+    logger.info('Loaded localstack environment variables')
+else:
+    load_dotenv(PACKAGE_DIR / ".env.production")
+    logger.info('Loaded production environment variables')
+
 
 def _env(name, default=None):
     v = os.getenv(name)
     return v if v is not None else default
 
-#localstack
-use_localstack = os.getenv("USE_LOCALSTACK", "false").lower() == "true"
-
 #aws region
 AWS_REGION = _env("AWS_REGION", "ap-south-1")
 
 # AWS CREDENTIALS
-AWS_ACCESS_KEY_ID=_env("AWS_ACCESS_KEY_ID", 'test') #if use_localstack else None
-AWS_SECRET_ACCESS_KEY=_env("AWS_SECRET_ACCESS_KEY", 'test') #if use_localstack else None
-LOCALSTACK_URL=_env("LOCALSTACK_URL", 'http://localhost:4566') #if use_localstack else None
+AWS_ACCESS_KEY_ID=_env("AWS_ACCESS_KEY_ID", None) #if use_localstack else None
+AWS_SECRET_ACCESS_KEY=_env("AWS_SECRET_ACCESS_KEY", None) #if use_localstack else None
+LOCALSTACK_URL=_env("LOCALSTACK_URL", None) #if use_localstack else None
+
 
 # S3
-INPUT_S3_BUCKET = _env("INPUT_S3_BUCKET")
+INPUT_S3_BUCKET = _env("INPUT_S3_BUCKET", None)
 INPUT_S3_PREFIX = _env("INPUT_S3_PREFIX", "")
 OUTPUT_S3_BUCKET = _env("OUTPUT_S3_BUCKET")
 OUTPUT_S3_PREFIX = _env("OUTPUT_S3_PREFIX", "")
 MANIFEST_S3_BUCKET = _env("MANIFEST_S3_BUCKET")
 MANIFEST_S3_KEY = _env("MANIFEST_S3_KEY", "manifest")
-
-# #endpoints
-#SQS_ENDPOINT_URL = _env("SQS_ENDPOINT_URL") #if use_localstack else None
-#DYNAMODB_ENDPOINT_URL = _env("DYNAMODB_ENDPOINT_URL") #if use_localstack else None
-#S3_ENDPOINT_URL = _env("S3_ENDPOINT_URL") #if use_localstack else None
 
 # Queue names - SQS/DLQ
 PDF_SQS_QUEUE_NAME = _env("PDF_SQS_QUEUE_NAME", "pdf-queue")
