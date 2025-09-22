@@ -47,8 +47,8 @@ PDF_OCR_PARQUET_SQS_QUEUE_NAME = _env("PDF_OCR_PARQUET_SQS_QUEUE_NAME", "parquet
 PDF_OCR_PARQUET_DLQ_QUEUE_NAME = _env("PDF_OCR_PARQUET_DLQ_QUEUE_NAME", "parquet-dlq")
 
 #DynamoDB
-PDF_FILE_STATE = _env("PDF_FILE_STATE", "pdf-processing-state")
-OCR_PARQUET_STATE = _env("OCR_PARQUET_STATE", "ocr_parquet_state")
+PDF_FILE_STATE_NAME = _env("PDF_FILE_STATE_NAME", "pdf-processing-state")
+OCR_PARQUET_STATE_NAME = _env("OCR_PARQUET_STATE_NAME", "ocr_parquet_state")
 
 
 # app settings
