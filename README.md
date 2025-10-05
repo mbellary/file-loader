@@ -265,10 +265,11 @@ You’re free to use, modify, and distribute this code.
 ## 🧾 Author
 
 **Mohammed Ali**  
-📧 [www.linkedin.com/in/mbellary](www.linkedin.com/in/mbellary)
+📧 [www.linkedin.com/in/mbellary](www.linkedin.com/in/mbellary) 
 🌐 [https://github.com/mbellary](https://github.com/mbellary)
 
 ---
 
 > _Part of the **Unstruct Modular Data Pipeline** — a fully containerized, serverless-ready ecosystem for ingestion, processing, and search._
+
 
