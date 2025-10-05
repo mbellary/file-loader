@@ -276,7 +276,9 @@ You’re free to use, modify, and distribute this code.
 ### 🤖 Powered by [ChatGPT](https://openai.com/chatgpt)
 _This project was documented and scaffolded with assistance from OpenAI’s ChatGPT._
 
+---
 > _Part of the **Unstruct Modular Data Pipeline** — a fully containerized, serverless-ready ecosystem for ingestion, processing, and search._
+
 
 
 
