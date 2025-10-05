@@ -1,5 +1,7 @@
 # file-loader
 
+[![Powered by ChatGPT](https://img.shields.io/badge/Powered%20by-ChatGPT-10a37f?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com/chatgpt)
+
 The **file-loader** service is a foundational component of the *Unstruct AI Data Processing Pipeline*.  
 It handles the **ingestion and loading of raw files** (PDFs, text, images, etc.) into cloud storage (e.g., AWS S3) and queues (e.g., SQS) for downstream processing by other services.
 
@@ -271,7 +273,11 @@ You’re free to use, modify, and distribute this code.
 
 ---
 
+### 🤖 Powered by [ChatGPT](https://openai.com/chatgpt)
+_This project was documented and scaffolded with assistance from OpenAI’s ChatGPT._
+
 > _Part of the **Unstruct Modular Data Pipeline** — a fully containerized, serverless-ready ecosystem for ingestion, processing, and search._
+
 
 
 
