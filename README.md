@@ -245,10 +245,10 @@ In production, `file-loader` is deployed on **AWS ECS Fargate** through the **Te
 
 ## 🧭 Roadmap
 
-- [ ] Add asyncio + parallel batch loading  
-- [ ] Integrate DynamoDB metadata writes  
-- [ ] Extend S3 multipart upload for large files  
-- [ ] Add CI/CD workflows for ECS deploy  
+- [X] Add asyncio + parallel batch loading  
+- [X] Integrate DynamoDB metadata writes  
+- [X] Extend S3 multipart upload for large files  
+- [X] Add CI/CD workflows for ECS deploy  
 - [ ] Add example Grafana dashboards  
 - [ ] Support cross-region uploads  
 
@@ -265,9 +265,10 @@ You’re free to use, modify, and distribute this code.
 ## 🧾 Author
 
 **Mohammed Ali**  
-📧 [www.linkedin.com/in/mbellary] (www.linkedin.com/in/mbellary)
+📧 [www.linkedin.com/in/mbellary](www.linkedin.com/in/mbellary)
 🌐 [https://github.com/mbellary](https://github.com/mbellary)
 
 ---
 
 > _Part of the **Unstruct Modular Data Pipeline** — a fully containerized, serverless-ready ecosystem for ingestion, processing, and search._
+
