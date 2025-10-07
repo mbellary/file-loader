@@ -4,8 +4,8 @@
   "requiresCompatibilities": ["FARGATE"],
   "cpu": "512",
   "memory": "2048",
-  "executionRoleArn": "arn:aws:iam::123456789012:role/unstruct_ecsTaskExecutionRole",
-  "taskRoleArn": "arn:aws:iam::123456789012:role/ecsTaskRole-workers",
+  "executionRoleArn": "arn:aws:iam::226403923581:role/unstruct_ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::226403923581:role/ecsTaskRole-workers",
   "containerDefinitions": [
     {
       "name": "worker-enqueue",
