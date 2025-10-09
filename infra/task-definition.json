@@ -17,7 +17,7 @@
         "options": {
           "awslogs-group": "/ecs/worker-enqueue-task",
           "awslogs-region": "ap-south-1",
-          "awslogs-stream-prefix": "worker-enqueue"
+          "awslogs-stream-prefix": "worker-enqueue-task"
         }
       },
       "environment": [
