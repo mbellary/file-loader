@@ -8,16 +8,16 @@
   "taskRoleArn": "arn:aws:iam::226403923581:role/ecsTaskRole-workers",
   "containerDefinitions": [
     {
-      "name": "worker-enqueue",
+      "name": "worker-enqueue-container",
       "image": "public.ecr.aws/amazonlinux/amazonlinux:latest",
       "essential": true,
       "portMappings": [{ "containerPort": 80, "protocol": "tcp" }],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/ecs/worker-enqueue-task",
+          "awslogs-group": "/ecs/worker-enqueue-logs",
           "awslogs-region": "ap-south-1",
-          "awslogs-stream-prefix": "worker-enqueue-task"
+          "awslogs-stream-prefix": "worker-enqueue-logs"
         }
       },
       "environment": [
